@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Base64;
 
 /**
  * Abstract base service class
@@ -72,6 +74,16 @@ public abstract class AbstractService {
      */
     public void setObjectMapper(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
+    }
+
+    /**
+     * Set the master authorization;
+     *
+     * @param username    The username to use
+     * @param password    The password aka. master secret key
+     */
+    public void setMasterAuthorization(String username, String password) {
+        masterAuthorizationHeader = "Basic "+ Base64.getEncoder().encodeToString((username+ ":" + password).getBytes(Charset.forName("UTF-8")));
     }
 
     /**
