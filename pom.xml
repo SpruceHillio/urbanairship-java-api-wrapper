@@ -16,7 +16,7 @@
     <url>http://sprucehillio.github.io/urbanairship-java-api-wrapper/</url>
     <groupId>io.sprucehill</groupId>
     <artifactId>urbanairship-java-api-wrapper</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
     <packaging>jar</packaging>
 
     <licenses>
