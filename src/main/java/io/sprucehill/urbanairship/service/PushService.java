@@ -26,7 +26,7 @@ public class PushService extends AbstractService implements IPushService {
         try {
             HttpResponse response = sendRequest(request);
             if (202 == response.getStatusLine().getStatusCode()) {
-                objectMapper.readValue(response.getEntity().getContent(), PushResponse.class);
+                return objectMapper.readValue(response.getEntity().getContent(), PushResponse.class);
             }
             else {
                 logger.info("Got unexpected response code {} for sending push", response.getStatusLine().getStatusCode());
