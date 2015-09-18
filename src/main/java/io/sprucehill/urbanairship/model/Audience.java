@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Model CTO class that defines an Audience selector.
+ * Model DTO class that defines an Audience selector.
  *
  * @author Michael Duergner <michael@sprucehill.io>
  */
