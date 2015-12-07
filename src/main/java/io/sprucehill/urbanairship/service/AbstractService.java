@@ -117,9 +117,7 @@ public abstract class AbstractService {
         if (0 == request.getHeaders(HttpHeaders.AUTHORIZATION).length) {
             request.addHeader(HttpHeaders.AUTHORIZATION,masterAuthorizationHeader);
         }
-        if (0 == request.getHeaders(HttpHeaders.ACCEPT).length) {
-            request.addHeader(HttpHeaders.ACCEPT,ACCEPT_CONTENT_TYPE);
-        }
+        request.addHeader(HttpHeaders.ACCEPT,ACCEPT_CONTENT_TYPE);
         return httpClient.execute(request);
     }
 

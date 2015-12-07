@@ -2,6 +2,7 @@ package io.sprucehill.urbanairship.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -17,13 +18,13 @@ public class TagsRequest extends Base {
     Audience audience;
 
     @JsonProperty(value = "add")
-    Map<String,Set<String>> add;
+    Map<String,Set<String>> add = new HashMap<>();
 
     @JsonProperty(value = "remove")
-    Map<String,Set<String>> remove;
+    Map<String,Set<String>> remove = new HashMap<>();
 
     @JsonProperty(value = "set")
-    Map<String,Set<String>> set;
+    Map<String,Set<String>> set = new HashMap<>();
 
     protected TagsRequest() {}
 
