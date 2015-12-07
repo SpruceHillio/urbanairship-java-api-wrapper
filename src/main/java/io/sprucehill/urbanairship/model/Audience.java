@@ -1,5 +1,6 @@
 package io.sprucehill.urbanairship.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Collections;
@@ -11,19 +12,19 @@ import java.util.Set;
  *
  * @author Michael Duergner <michael@sprucehill.io>
  */
-public class Audience {
+public class Audience extends Base {
 
     @JsonProperty(value = "ios_channel")
-    Set<String> iOSChannel = new HashSet<>();
+    Set<String> iOSChannel;
 
     @JsonProperty(value = "android_channel")
-    Set<String> androidChannel = new HashSet<>();
+    Set<String> androidChannel;
 
     @JsonProperty(value = "amazon_channel")
-    Set<String> amazonChannel = new HashSet<>();
+    Set<String> amazonChannel;
 
     @JsonProperty(value = "named_user_id")
-    Set<String> namedUserId = new HashSet<>();
+    Set<String> namedUserId;
 
     /**
      * Get the set iOS channel IDs.
@@ -33,7 +34,7 @@ public class Audience {
      * @return A set of iOS channel IDs; will never be null.
      */
     public Set<String> getiOSChannel() {
-        return Collections.unmodifiableSet(iOSChannel);
+        return null == iOSChannel ? null : Collections.unmodifiableSet(iOSChannel);
     }
 
     /**
@@ -44,7 +45,7 @@ public class Audience {
      * @return A set of Android channel IDs; will never be null.
      */
     public Set<String> getAndroidChannel() {
-        return Collections.unmodifiableSet(androidChannel);
+        return null == androidChannel ? null : Collections.unmodifiableSet(androidChannel);
     }
 
     /**
@@ -55,7 +56,7 @@ public class Audience {
      * @return A set of Amazon channel IDs; will never be null.
      */
     public Set<String> getAmazonChannel() {
-        return Collections.unmodifiableSet(amazonChannel);
+        return null == amazonChannel ? null : Collections.unmodifiableSet(amazonChannel);
     }
 
     /**
@@ -66,7 +67,7 @@ public class Audience {
      * @return A set of namedUser IDs; will never be null.
      */
     public Set<String> getNamedUserId() {
-        return Collections.unmodifiableSet(namedUserId);
+        return null == namedUserId ? null : Collections.unmodifiableSet(namedUserId);
     }
 
     /**
@@ -93,8 +94,11 @@ public class Audience {
          * @return             The Builder instance
          */
         public Builder withIOSChannel(String channelId) {
+            if (null == audience.iOSChannel) {
+                audience.iOSChannel = new HashSet<>();
+            }
             audience.iOSChannel.add(channelId);
-            audience.namedUserId = new HashSet<>();
+            audience.namedUserId = null;
             return this;
         }
 
@@ -107,8 +111,11 @@ public class Audience {
          * @return             The Builder instance
          */
         public Builder withIOSChannels(Set<String> channelIds) {
+            if (null == audience.iOSChannel) {
+                audience.iOSChannel = new HashSet<>();
+            }
             audience.iOSChannel.addAll(channelIds);
-            audience.namedUserId = new HashSet<>();
+            audience.namedUserId = null;
             return this;
         }
 
@@ -122,8 +129,11 @@ public class Audience {
          * @return             The Builder instance
          */
         public Builder withAndroidChannel(String channelId) {
+            if (null == audience.androidChannel) {
+                audience.androidChannel = new HashSet<>();
+            }
             audience.androidChannel.add(channelId);
-            audience.namedUserId = new HashSet<>();
+            audience.namedUserId = null;
             return this;
         }
 
@@ -136,8 +146,11 @@ public class Audience {
          * @return             The Builder instance
          */
         public Builder withAndroidChannels(Set<String> channelIds) {
+            if (null == audience.androidChannel) {
+                audience.androidChannel = new HashSet<>();
+            }
             audience.androidChannel.addAll(channelIds);
-            audience.namedUserId = new HashSet<>();
+            audience.namedUserId = null;
             return this;
         }
 
@@ -150,8 +163,11 @@ public class Audience {
          * @return             The Builder instance
          */
         public Builder withAmazonChannel(String channelId) {
+            if (null == audience.amazonChannel) {
+                audience.amazonChannel = new HashSet<>();
+            }
             audience.amazonChannel.add(channelId);
-            audience.namedUserId = new HashSet<>();
+            audience.namedUserId = null;
             return this;
         }
 
@@ -164,8 +180,11 @@ public class Audience {
          * @return             The Builder instance
          */
         public Builder withAmazonChannels(Set<String> channelIds) {
-            audience.androidChannel.addAll(channelIds);
-            audience.namedUserId = new HashSet<>();
+            if (null == audience.amazonChannel) {
+                audience.amazonChannel = new HashSet<>();
+            }
+            audience.amazonChannel.addAll(channelIds);
+            audience.namedUserId = null;
             return this;
         }
 
@@ -178,10 +197,13 @@ public class Audience {
          * @return             The Builder instance
          */
         public Builder withNamedUser(String namedUserId) {
+            if (null == audience.namedUserId) {
+                audience.namedUserId = new HashSet<>();
+            }
             audience.namedUserId.add(namedUserId);
-            audience.iOSChannel = new HashSet<>();
-            audience.androidChannel = new HashSet<>();
-            audience.amazonChannel = new HashSet<>();
+            audience.iOSChannel = null;
+            audience.androidChannel = null;
+            audience.amazonChannel = null;
             return this;
         }
 
@@ -194,10 +216,13 @@ public class Audience {
          * @return             The Builder instance
          */
         public Builder withNamedUsers(Set<String> namedUserIds) {
+            if (null == audience.namedUserId) {
+                audience.namedUserId = new HashSet<>();
+            }
             audience.namedUserId.addAll(namedUserIds);
-            audience.iOSChannel = new HashSet<>();
-            audience.androidChannel = new HashSet<>();
-            audience.amazonChannel = new HashSet<>();
+            audience.iOSChannel = null;
+            audience.androidChannel = null;
+            audience.amazonChannel = null;
             return this;
         }
 

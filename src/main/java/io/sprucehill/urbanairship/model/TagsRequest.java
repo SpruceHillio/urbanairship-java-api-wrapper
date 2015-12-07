@@ -18,13 +18,13 @@ public class TagsRequest extends Base {
     Audience audience;
 
     @JsonProperty(value = "add")
-    Map<String,Set<String>> add = new HashMap<>();
+    Map<String,Set<String>> add;
 
     @JsonProperty(value = "remove")
-    Map<String,Set<String>> remove = new HashMap<>();
+    Map<String,Set<String>> remove;
 
     @JsonProperty(value = "set")
-    Map<String,Set<String>> set = new HashMap<>();
+    Map<String,Set<String>> set;
 
     protected TagsRequest() {}
 
@@ -79,11 +79,14 @@ public class TagsRequest extends Base {
          * @return            The builder instance
          */
         public Builder addTagToTagGroup(String tag, String tagGroup) {
+            if (null == tagsRequest.add) {
+                tagsRequest.add = new HashMap<>();
+            }
             if (!tagsRequest.add.containsKey(tagGroup)) {
                 tagsRequest.add.put(tagGroup,new HashSet<>());
             }
             tagsRequest.add.get(tagGroup).add(tag);
-            tagsRequest.set.clear();
+            tagsRequest.set = null;
             return this;
         }
 
@@ -97,11 +100,14 @@ public class TagsRequest extends Base {
          * @return            The builder instance
          */
         public Builder addTagsToTagGroup(Set<String> tags, String tagGroup) {
+            if (null == tagsRequest.add) {
+                tagsRequest.add = new HashMap<>();
+            }
             if (!tagsRequest.add.containsKey(tagGroup)) {
                 tagsRequest.add.put(tagGroup,new HashSet<>());
             }
             tagsRequest.add.get(tagGroup).addAll(tags);
-            tagsRequest.set.clear();
+            tagsRequest.set = null;
             return this;
         }
 
@@ -115,11 +121,14 @@ public class TagsRequest extends Base {
          * @return            The builder instance
          */
         public Builder removeTagToTagGroup(String tag, String tagGroup) {
+            if (null == tagsRequest.remove) {
+                tagsRequest.remove = new HashMap<>();
+            }
             if (!tagsRequest.remove.containsKey(tagGroup)) {
                 tagsRequest.remove.put(tagGroup,new HashSet<>());
             }
             tagsRequest.remove.get(tagGroup).add(tag);
-            tagsRequest.set.clear();
+            tagsRequest.set = null;
             return this;
         }
 
@@ -133,11 +142,14 @@ public class TagsRequest extends Base {
          * @return            The builder instance
          */
         public Builder removeTagsToTagGroup(Set<String> tags, String tagGroup) {
+            if (null == tagsRequest.remove) {
+                tagsRequest.remove = new HashMap<>();
+            }
             if (!tagsRequest.remove.containsKey(tagGroup)) {
                 tagsRequest.remove.put(tagGroup,new HashSet<>());
             }
             tagsRequest.remove.get(tagGroup).addAll(tags);
-            tagsRequest.set.clear();
+            tagsRequest.set = null;
             return this;
         }
 
@@ -151,12 +163,15 @@ public class TagsRequest extends Base {
          * @return            The builder instance
          */
         public Builder setTagToTagGroup(String tag, String tagGroup) {
+            if (null == tagsRequest.set) {
+                tagsRequest.set = new HashMap<>();
+            }
             if (!tagsRequest.set.containsKey(tagGroup)) {
                 tagsRequest.set.put(tagGroup,new HashSet<>());
             }
             tagsRequest.set.get(tagGroup).add(tag);
-            tagsRequest.add.clear();
-            tagsRequest.remove.clear();
+            tagsRequest.add = null;
+            tagsRequest.remove = null;
             return this;
         }
 
@@ -170,12 +185,15 @@ public class TagsRequest extends Base {
          * @return            The builder instance
          */
         public Builder setTagsToTagGroup(Set<String> tags, String tagGroup) {
+            if (null == tagsRequest.set) {
+                tagsRequest.set = new HashMap<>();
+            }
             if (!tagsRequest.set.containsKey(tagGroup)) {
                 tagsRequest.set.put(tagGroup,new HashSet<>());
             }
             tagsRequest.set.get(tagGroup).addAll(tags);
-            tagsRequest.add.clear();
-            tagsRequest.remove.clear();
+            tagsRequest.add = null;
+            tagsRequest.remove = null;
             return this;
         }
 
