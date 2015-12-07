@@ -7,6 +7,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -117,6 +118,7 @@ public abstract class AbstractService {
         if (0 == request.getHeaders(HttpHeaders.AUTHORIZATION).length) {
             request.addHeader(HttpHeaders.AUTHORIZATION,masterAuthorizationHeader);
         }
+        request.addHeader(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.getMimeType());
         request.addHeader(HttpHeaders.ACCEPT,ACCEPT_CONTENT_TYPE);
         return httpClient.execute(request);
     }
