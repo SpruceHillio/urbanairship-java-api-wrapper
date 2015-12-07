@@ -1,5 +1,6 @@
 package io.sprucehill.urbanairship.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Collections;
@@ -11,7 +12,7 @@ import java.util.Set;
  *
  * @author Michael Duergner <michael@sprucehill.io>
  */
-public class Audience {
+public class Audience extends Base {
 
     @JsonProperty(value = "ios_channel")
     Set<String> iOSChannel;
@@ -33,7 +34,7 @@ public class Audience {
      * @return A set of iOS channel IDs; will never be null.
      */
     public Set<String> getiOSChannel() {
-        return Collections.unmodifiableSet(iOSChannel);
+        return null == iOSChannel ? null : Collections.unmodifiableSet(iOSChannel);
     }
 
     /**
@@ -44,7 +45,7 @@ public class Audience {
      * @return A set of Android channel IDs; will never be null.
      */
     public Set<String> getAndroidChannel() {
-        return Collections.unmodifiableSet(androidChannel);
+        return null == androidChannel ? null : Collections.unmodifiableSet(androidChannel);
     }
 
     /**
@@ -55,7 +56,7 @@ public class Audience {
      * @return A set of Amazon channel IDs; will never be null.
      */
     public Set<String> getAmazonChannel() {
-        return Collections.unmodifiableSet(amazonChannel);
+        return null == amazonChannel ? null : Collections.unmodifiableSet(amazonChannel);
     }
 
     /**
@@ -66,7 +67,7 @@ public class Audience {
      * @return A set of namedUser IDs; will never be null.
      */
     public Set<String> getNamedUserId() {
-        return Collections.unmodifiableSet(namedUserId);
+        return null == namedUserId ? null : Collections.unmodifiableSet(namedUserId);
     }
 
     /**
