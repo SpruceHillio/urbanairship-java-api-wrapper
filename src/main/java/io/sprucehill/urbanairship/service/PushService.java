@@ -4,6 +4,8 @@ import io.sprucehill.urbanairship.model.PushRequest;
 import io.sprucehill.urbanairship.model.PushResponse;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
 
 import java.io.IOException;
 
@@ -22,8 +24,9 @@ public class PushService extends AbstractService implements IPushService {
 
     @Override
     public PushResponse send(PushRequest pushRequest) {
-        HttpPost request = postRequest("/api/push");
         try {
+            HttpPost request = postRequest("/api/push");
+            request.setEntity(new StringEntity(objectMapper.writeValueAsString(pushRequest), ContentType.APPLICATION_JSON));
             HttpResponse response = sendRequest(request);
             if (202 == response.getStatusLine().getStatusCode()) {
                 return objectMapper.readValue(response.getEntity().getContent(), PushResponse.class);
